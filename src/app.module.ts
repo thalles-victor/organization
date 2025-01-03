@@ -2,9 +2,22 @@ import { Module, ValidationPipe } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { APP_PIPE } from '@nestjs/core';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { ENV } from '#env';
 
 @Module({
-  imports: [],
+  imports: [
+    TypeOrmModule.forRoot({
+      type: 'postgres',
+      host: ENV.POSTGRES_HOST,
+      port: ENV.POSTGRES_PORT,
+      username: ENV.POSTGRES_USER,
+      password: ENV.POSTGRES_PASSWORD,
+      database: ENV.POSTGRES_DB,
+      entities: [],
+      synchronize: true,
+    }),
+  ],
   controllers: [AppController],
   providers: [
     {

@@ -5,6 +5,7 @@ export const envSchema = z.object({
   JWT_SECRET: z.string(),
 
   // POSTGRES
+  POSTGRES_HOST: z.string(),
   POSTGRES_USER: z.string(),
   POSTGRES_PASSWORD: z.string(),
   POSTGRES_DB: z.string(),
