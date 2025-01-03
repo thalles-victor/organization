@@ -40,8 +40,8 @@ export class UserEntity {
 
 export class UserUpdateEntity {
   name: string;
-  role: string;
-  updatedAt: string;
+  role: ROLE;
+  updatedAt: Date;
 }
 
 export type UserUniqueRef = Pick<UserEntity, 'id'> | Pick<UserEntity, 'email'>;
