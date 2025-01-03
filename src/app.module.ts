@@ -5,6 +5,7 @@ import { APP_PIPE } from '@nestjs/core';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ENV } from '#env';
 import { AuthModule } from './Application/Domains/Auth/Auth.module';
+import { UserEntity } from '#entities';
 
 @Module({
   imports: [
@@ -15,13 +16,14 @@ import { AuthModule } from './Application/Domains/Auth/Auth.module';
       username: ENV.POSTGRES_USER,
       password: ENV.POSTGRES_PASSWORD,
       database: ENV.POSTGRES_DB,
-      entities: [`${__dirname}/Application/Entities/*.entity{.js,.ts}`],
+      entities: [UserEntity],
       migrations: [
         `${__dirname}/Application/Infra/Repositories/TypeOrm/migrations/{.ts,*js}`,
       ],
       migrationsRun: true,
       synchronize: false,
     }),
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [
@@ -34,7 +36,6 @@ import { AuthModule } from './Application/Domains/Auth/Auth.module';
     },
 
     AppService,
-    AuthModule,
   ],
 })
 export class AppModule {}
