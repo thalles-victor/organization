@@ -1,1 +1,3 @@
-export enum KEY_OF_INJECTION {}
+export enum KEY_OF_INJECTION {
+  USER_REPOSITORY = 'USER_REPOSITORY',
+}
