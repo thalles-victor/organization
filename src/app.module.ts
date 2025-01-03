@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { APP_PIPE } from '@nestjs/core';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ENV } from '#env';
+import { AuthModule } from './Application/Domains/Auth/Auth.module';
 
 @Module({
   imports: [
@@ -33,6 +34,7 @@ import { ENV } from '#env';
     },
 
     AppService,
+    AuthModule,
   ],
 })
 export class AppModule {}
