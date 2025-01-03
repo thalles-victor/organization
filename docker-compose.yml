@@ -12,7 +12,7 @@ services:
     ports:
       - '5432:5432'
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - organization_postgres_data:/var/lib/postgresql/data
     networks:
       - organization-network
 
@@ -20,7 +20,7 @@ services:
     image: redis:7-alpine
     container_name: organization-bank-redis
     env_file:
-      - path: './backend/.env'
+      - path: '.env'
         required: true
     environment:
       - REDIS_PASSWORD=${REDIS_PASSWORD}
@@ -30,7 +30,7 @@ services:
     ports:
       - '6379:6379'
     volumes:
-      - redis_data:/data
+      - organization_redis_data:/data
     networks:
       - organization-network
 
@@ -39,5 +39,5 @@ networks:
     driver: bridge
 
 volumes:
-  postgres_data:
-  redis_data:
+  organization_postgres_data:
+  organization_redis_data:
