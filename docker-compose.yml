@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  organization-postgres:
+    container_name: organization-postgres
+    image: postgres:15-alpine
+
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=pass
+      - POSTGRES_DB=db
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - organization-network
+
+  organization-redis:
+    image: redis:7-alpine
+    container_name: organization-bank-redis
+    env_file:
+      - path: './backend/.env'
+        required: true
+    environment:
+      - REDIS_PASSWORD=${REDIS_PASSWORD}
+    command: >
+      --requirepass pass
+
+    ports:
+      - '6379:6379'
+    volumes:
+      - redis_data:/data
+    networks:
+      - organization-network
+
+networks:
+  organization-network:
+    driver: bridge
+
+volumes:
+  postgres_data:
+  redis_data:
