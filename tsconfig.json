@@ -16,6 +16,12 @@
     "noImplicitAny": false,
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
-    "noFallthroughCasesInSwitch": false
+    "noFallthroughCasesInSwitch": false,
+    "paths": {
+      "#types": ["./src/Application/@Shared/types"],
+      "#metadata": ["./src/Application/@Shared/metadata"],
+      "#env": ["./src/Application/@Shared/env"],
+      "#utils": ["./src/Application/@Shared/utils"],
+    }
   }
 }
