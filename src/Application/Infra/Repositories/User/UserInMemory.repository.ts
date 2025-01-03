@@ -2,6 +2,7 @@ import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { UserEntity, UserUniqueRef, UserUpdateEntity } from '#entities';
 import { IUserRepositoryContract } from './IUser.repository-contract';
 import { GenericPaginationDto, splitKeyAndValue } from '#utils';
+import { SelectFieldsWithRelations } from '#types';
 
 @Injectable()
 export class UserInMemoryRepository implements IUserRepositoryContract {
@@ -58,13 +59,33 @@ export class UserInMemoryRepository implements IUserRepositoryContract {
     }
   }
 
-  async getBy(unqRef: UserUniqueRef): Promise<UserEntity> {
+  async getBy<F extends keyof UserEntity, R extends keyof UserEntity>(
+    unqRef: UserUniqueRef,
+    fields?: F[],
+    relations?: R[],
+  ): Promise<SelectFieldsWithRelations<UserEntity, F, R> | null> {
     const [key, value] = splitKeyAndValue(unqRef);
 
     try {
       const user = this.users.find((user) => user[key] === value);
-      if (!user) throw new Error('User not found');
-      return user;
+      if (!user) return null;
+
+      const selectedFields =
+        fields?.reduce((acc, field) => {
+          acc[field] = user[field];
+          return acc;
+        }, {} as Partial<UserEntity>) || {};
+
+      const selectedRelations =
+        relations?.reduce((acc, relation) => {
+          acc[relation] = user[relation];
+          return acc;
+        }, {} as Partial<UserEntity>) || {};
+
+      return {
+        ...selectedFields,
+        ...selectedRelations,
+      } as SelectFieldsWithRelations<UserEntity, F, R>;
     } catch (e) {
       console.log(e);
       throw new InternalServerErrorException();

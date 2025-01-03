@@ -4,6 +4,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { IUserRepositoryContract } from './IUser.repository-contract';
 import { GenericPaginationDto, splitKeyAndValue } from '#utils';
+import { SelectFieldsWithRelations } from '#types';
 
 @Injectable()
 export class UserTypeOrmRepository implements IUserRepositoryContract {
@@ -62,11 +63,19 @@ export class UserTypeOrmRepository implements IUserRepositoryContract {
     }
   }
 
-  async getBy(unqRef: UserUniqueRef): Promise<UserEntity> {
+  async getBy<F extends keyof UserEntity, R extends keyof UserEntity>(
+    unqRef: UserUniqueRef,
+    fields?: F[],
+    relations?: R[],
+  ): Promise<SelectFieldsWithRelations<UserEntity, F, R>> {
     const [key, value] = splitKeyAndValue(unqRef);
 
     try {
-      return await this.userRepository.findOneBy({ [key]: value });
+      return await this.userRepository.findOne({
+        where: { [key]: value },
+        select: fields,
+        relations,
+      });
     } catch (e) {
       console.log(e);
       throw new InternalServerErrorException();
