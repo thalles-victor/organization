@@ -22,6 +22,7 @@
       "#metadata": ["./src/Application/@Shared/metadata"],
       "#env": ["./src/Application/@Shared/env"],
       "#utils": ["./src/Application/@Shared/utils"],
+      "#entities": ["./src/Application/Entities"]
     }
   }
 }
