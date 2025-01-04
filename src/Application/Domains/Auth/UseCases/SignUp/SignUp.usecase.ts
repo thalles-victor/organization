@@ -17,7 +17,8 @@ export class SignUpUseCase {
   async execute(signUpDto: SignUpDto) {
     const userExist = await this.userRepository.getBy(
       { email: signUpDto.email },
-      ['id'],
+      ['id'], // fields
+      [], // relations
     );
 
     if (userExist) {
