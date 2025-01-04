@@ -2,9 +2,10 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { SignUpUseCase } from './SignUp.usecase';
 import { SignUpDto } from './SignUp.dto';
-import { KEY_OF_INJECTION } from '#metadata';
+import { KEY_OF_INJECTION, ThrowErrorMessage } from '#metadata';
 import { UserInMemoryRepository } from 'src/Application/Infra/Repositories/User/UserInMemory.repository';
 import { ROLE } from 'src/Application/@Shared/metadata/role';
+import { UnauthorizedException } from '@nestjs/common';
 
 describe('UserService', () => {
   let signUpUseCase: SignUpUseCase;
@@ -48,9 +49,9 @@ describe('UserService', () => {
 
       await signUpUseCase.execute(userDto);
 
-      expect(
-        async () => await signUpUseCase.execute(userDto),
-      ).rejects.toThrow();
+      expect(async () => await signUpUseCase.execute(userDto)).rejects.toThrow(
+        new UnauthorizedException(ThrowErrorMessage.signUp_already_exist),
+      );
     });
   });
 });
