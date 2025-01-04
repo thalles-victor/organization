@@ -17,7 +17,9 @@
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
+    "resolveJsonModule": true,
     "paths": {
+      "src/*": ["src/*"],
       "#types": ["./src/Application/@Shared/types"],
       "#metadata": ["./src/Application/@Shared/metadata"],
       "#env": ["./src/Application/@Shared/env"],
