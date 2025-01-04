@@ -1,8 +1,7 @@
 import { Inject, Injectable, UnauthorizedException } from '@nestjs/common';
 import { SignUpDto } from './SignUp.dto';
 import { IUserRepositoryContract } from 'src/Application/Infra/Repositories/User/IUser.repository-contract';
-import { KEY_OF_INJECTION } from '#metadata';
-import { ThrowErrorMessage } from 'src/Application/@Shared/metadata/error-messages';
+import { KEY_OF_INJECTION, ThrowErrorMessage } from '#metadata';
 import { UserEntity } from '#entities';
 import { defaultUniqueId } from '#utils';
 import * as bcrypt from 'bcrypt';
