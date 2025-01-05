@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles.css" />
+    <title>Documentação</title>
+  </head>
+  <body>
+    <header>
+      <h1>Documentação do Projeto</h1>
+    </header>
+
+    <nav>
+      <ul>
+        <li><a href="#introducao">Introdução</a></li>
+        <li><a href="#instalacao">Instalação</a></li>
+        <li><a href="#uso">Como Usar</a></li>
+        <li><a href="#api">Referência da API</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+    </nav>
+
+    <main>
+      <section id="introducao">
+        <h2>Introdução</h2>
+        <p>
+          Bem-vindo à documentação do projeto! Este documento foi criado para
+          ajudá-lo a entender e usar o sistema.
+        </p>
+      </section>
+
+      <section id="instalacao">
+        <h2>Instalação</h2>
+        <p>Siga os passos abaixo para instalar o projeto:</p>
+        <ol>
+          <li>Clone o repositório.</li>
+          <li>Instale as dependências.</li>
+          <li>Configure as variáveis de ambiente.</li>
+          <li>Execute o projeto.</li>
+        </ol>
+      </section>
+
+      <section id="uso">
+        <h2>Como Usar</h2>
+        <p>
+          Esta seção descreve como você pode interagir com o sistema, incluindo
+          exemplos e melhores práticas.
+        </p>
+      </section>
+
+      <section id="api">
+        <h2>Referência da API</h2>
+
+        <div class="endpoint">
+          <h3>POST /v1/auth/signUp</h3>
+          <p>Cadastra o usuário</p>
+
+          <pre>
+Exemplo do da requisição
+
+{
+  "name": "thalles",
+  "email": "thalles@gmail.com",
+  "password": "#PasswordExample123"
+}
+
+        </pre
+          >
+
+          <pre>
+Exemplo de resposta:
+{
+  "data": {
+    "accessToken": {
+      "token": "eyJhbGciOiJIU...",
+      "duration": "24h",
+      "expiresInMilliseconds": 86400000,
+      "expiresInUnixEpoch": 1736184217364
+    },
+    "user": {
+      "id": "fa1e76d5-39ca-4786-a0ba-dc5f25e33c97",
+      "name": "thalles",
+      "email": "thalles@gmail.com",
+      "role": "USER",
+      "deletedAt": null,
+      "createdAt": "2025-01-05T17:23:37.356Z",
+      "updatedAt": "2025-01-05T17:23:37.356Z"
+    }
+  },
+  "href": {
+    "url": "http://localhost:3000/v1/user",
+    "method": "GET"
+  }
+}
+        </pre
+          >
+        </div>
+
+        <div class="endpoint">
+          <h3>POST /v1/auth/signIn</h3>
+          <p>Autentica um usuário já criado</p>
+          <pre>
+Exemplo de payload:
+{
+  "email": "thalles@gmail.com",
+  "password": "#PasswordExample123"
+}
+
+Exemplo de resposta:
+{
+  "data": {
+    "accessToken": {
+      "token": "eyJhbGciOiJIU...",
+      "duration": "24h",
+      "expiresInMilliseconds": 86400000,
+      "expiresInUnixEpoch": 1736184217364
+    },
+    "user": {
+      "id": "fa1e76d5-39ca-4786-a0ba-dc5f25e33c97",
+      "name": "thalles",
+      "email": "thalles@gmail.com",
+      "role": "USER",
+      "deletedAt": null,
+      "createdAt": "2025-01-05T17:23:37.356Z",
+      "updatedAt": "2025-01-05T17:23:37.356Z"
+    }
+  },
+  "href": {
+    "url": "http://localhost:3000/v1/user",
+    "method": "GET"
+  }
+}
+        </pre
+          >
+        </div>
+      </section>
+
+      <section id="contato">
+        <h2>Contato</h2>
+        <p>
+          Se você tiver dúvidas ou precisar de suporte, entre em contato conosco
+          pelo e-mail: suporte@exemplo.com.
+        </p>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2025 Documentação do Projeto. Todos os direitos reservados.</p>
+    </footer>
+  </body>
+</html>
