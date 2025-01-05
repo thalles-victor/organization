@@ -33,9 +33,5 @@ export async function verifyJWTAccess(jwtAccess: string): Promise<PayloadType> {
 export async function jwtAlreadyExpireBaseUnixEpoch(
   expiresInUnixEpoch: number,
 ) {
-  if (Date.now() > expiresInUnixEpoch) {
-    return true;
-  }
-
-  return false;
+  return Date.now() > expiresInUnixEpoch;
 }
