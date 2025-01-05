@@ -1,4 +1,5 @@
 /* eslint-disable prettier/prettier */
+import 'dotenv/config';
 import { Test, TestingModule } from '@nestjs/testing';
 import { SignUpUseCase } from './SignUp.usecase';
 import { SignUpDto } from './SignUp.dto';
@@ -34,10 +35,11 @@ describe('UserService', () => {
 
       const userCreated = await signUpUseCase.execute(userDto);
 
-      expect(userCreated.name).toBe(userDto.name);
-      expect(userCreated.password).not.toBe(userDto.password);
-      expect(userCreated.role).toBe(ROLE.USER);
-      expect(userCreated.role).toBeDefined();
+      expect(userCreated.user.name).toBe(userDto.name);
+      expect(userCreated.user.password).not.toBe(userDto.password);
+      expect(userCreated.user.role).toBe(ROLE.USER);
+      expect(userCreated.user.deletedAt).toBe(null);
+      expect(userCreated.accessToken.token).toBeDefined();
     });
 
     it('não seja possível criar um usuário que já exista', async () => {
