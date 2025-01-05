@@ -10,7 +10,6 @@ export async function genJWTAccess(payload: PayloadType) {
 
   const token = jwt.sign(payload, ENV.JWT_SECRET, {
     expiresIn: '24h',
-    algorithm: 'ES512',
   });
 
   return {
