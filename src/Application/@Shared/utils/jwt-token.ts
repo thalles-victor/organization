@@ -3,7 +3,7 @@ import { ENV } from '../env';
 import { UnauthorizedException } from '@nestjs/common';
 import { PayloadType } from '../types';
 
-export async function genJWTAccess(payload: object) {
+export async function genJWTAccess(payload: PayloadType) {
   const duration = '24h';
   const expiresInMilliseconds = 24 * 60 * 60 * 1000; // 86400000 mile seconds
   const expiresInUnixEpoch = Date.now() + expiresInMilliseconds;

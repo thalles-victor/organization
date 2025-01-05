@@ -43,6 +43,8 @@ export class SignUpUseCase {
 
     const userCreated = await this.userRepository.create(userEntity);
 
+    const 
+
     return userCreated;
   }
 }
