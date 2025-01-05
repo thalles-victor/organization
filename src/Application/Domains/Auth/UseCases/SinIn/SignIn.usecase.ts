@@ -21,11 +21,7 @@ export class SignInUseCase {
   ) {}
 
   async execute(signInDto: SignInDto) {
-    const user = await this.userRepository.getBy(
-      { email: signInDto.email },
-      [],
-      [],
-    );
+    const user = await this.userRepository.getBy({ email: signInDto.email });
 
     if (!user) {
       throw new UnauthorizedException(ThrowErrorMessage.signIn_userNotExist);

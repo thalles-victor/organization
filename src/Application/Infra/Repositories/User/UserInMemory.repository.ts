@@ -70,7 +70,7 @@ export class UserInMemoryRepository implements IUserRepositoryContract {
       const user = this.users.find((user) => user[key] === value);
       if (!user) return null;
 
-      if (fields.length || relations.length) {
+      if (fields || relations) {
         const selectedFields =
           fields?.reduce((acc, field) => {
             acc[field] = user[field];
