@@ -5,6 +5,7 @@ import { SignUpUseCase } from './UseCases/SignUp/SignUp.usecase';
 import { RepositoriesModule } from 'src/Application/Infra/Repositories/Repositories.module';
 import { KEY_OF_INJECTION } from '#metadata';
 import { UserTypeOrmRepository } from 'src/Application/Infra/Repositories/User/UserTypeOrm.repository';
+import { SignInUseCase } from './UseCases/SinIn/SignIn.usecase';
 
 @Module({
   imports: [RepositoriesModule],
@@ -16,6 +17,7 @@ import { UserTypeOrmRepository } from 'src/Application/Infra/Repositories/User/U
     },
     AuthService,
     SignUpUseCase,
+    SignInUseCase,
   ],
 })
 export class AuthModule {}

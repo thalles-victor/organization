@@ -10,4 +10,14 @@ export const ThrowErrorMessage: ThrowErrorMessageType = {
     ptBR: 'user not exist',
     engUS: 'usuário não existe',
   },
+
+  userBanned: {
+    engUS: 'user banned or deleted',
+    ptBR: 'usuário banido ou deletado',
+  },
+
+  signIn_passwordInvalid: {
+    engUS: 'password invalid',
+    ptBR: 'senha inválida',
+  },
 };
