@@ -52,7 +52,7 @@ describe('UserService', () => {
       await signUpUseCase.execute(userDto);
 
       expect(async () => await signUpUseCase.execute(userDto)).rejects.toThrow(
-        new UnauthorizedException(ThrowErrorMessage.signUp_already_exist),
+        new UnauthorizedException(ThrowErrorMessage.signUp_alreadyExist),
       );
     });
   });
