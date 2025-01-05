@@ -6,6 +6,8 @@ import { UserInMemoryRepository } from 'src/Application/Infra/Repositories/User/
 import { SignUpDto } from './UseCases/SignUp/SignUp.dto';
 import { SignUpUseCase } from './UseCases/SignUp/SignUp.usecase';
 import { AuthService } from './Auth.service';
+import { SignInDto } from './UseCases/SinIn/SignIn.dto';
+import { SignInUseCase } from './UseCases/SinIn/SignIn.usecase';
 
 describe('AuthController', () => {
   let authController: AuthController;
@@ -19,8 +21,9 @@ describe('AuthController', () => {
           provide: KEY_OF_INJECTION.USER_REPOSITORY,
           useClass: UserInMemoryRepository,
         },
-        SignUpUseCase,
         AuthService,
+        SignUpUseCase,
+        SignInUseCase,
       ],
     }).compile();
 
@@ -31,8 +34,8 @@ describe('AuthController', () => {
     expect(authController).toBeDefined();
   });
 
-  describe('test SingUp controller', () => {
-    it('should be able create a user', async () => {
+  describe('test controller', () => {
+    it('is not possible to get the password from the signIn controller', async () => {
       const userDto: SignUpDto = {
         name: 'jhon',
         email: 'jhon@gmail.com',
@@ -41,7 +44,30 @@ describe('AuthController', () => {
 
       const userCreated = await authController.signUp(userDto);
 
-      expect(userCreated.data.user.password).not.toBeDefined();
+      expect(userCreated.data.user['password']).not.toBeDefined();
+    });
+
+    it('is not possible to get the password from the signIn controller', async () => {
+      // // create user
+      const signUpDto: SignUpDto = {
+        name: 'jhon',
+        email: 'jhon@gmail.com',
+        password: '#Minhasenhajhon123',
+      };
+
+      const userCreated = await authController.signUp(signUpDto);
+      expect(userCreated).toBeDefined();
+
+      // auth the user created
+      const singInDto: SignInDto = {
+        email: signUpDto.email,
+        password: signUpDto.password,
+      };
+
+      const signInResult = await authController.signIn(singInDto);
+
+      expect(signInResult).toBeDefined();
+      expect(signInResult.data.user['password']).not.toBeDefined();
     });
   });
 });
