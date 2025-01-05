@@ -3,7 +3,7 @@ import { SignUpDto } from './SignUp.dto';
 import { IUserRepositoryContract } from 'src/Application/Infra/Repositories/User/IUser.repository-contract';
 import { KEY_OF_INJECTION, ThrowErrorMessage } from '#metadata';
 import { UserEntity } from '#entities';
-import { defaultUniqueId } from '#utils';
+import { defaultUniqueId, genJWTAccess } from '#utils';
 import * as bcrypt from 'bcrypt';
 import { ROLE } from 'src/Application/@Shared/metadata/role';
 
@@ -43,8 +43,14 @@ export class SignUpUseCase {
 
     const userCreated = await this.userRepository.create(userEntity);
 
-    const 
+    const jwtInfo = await genJWTAccess({
+      sub: userCreated.id,
+      role: userCreated.role,
+    });
 
-    return userCreated;
+    return {
+      accessToken: jwtInfo,
+      user: userCreated,
+    };
   }
 }
