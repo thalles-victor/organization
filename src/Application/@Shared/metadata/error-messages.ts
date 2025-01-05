@@ -1,6 +1,13 @@
-export const ThrowErrorMessage = {
-  signUp_already_exist: {
+import { ThrowErrorMessageType } from '../types/error-messages';
+
+export const ThrowErrorMessage: ThrowErrorMessageType = {
+  signUp_alreadyExist: {
     engUS: 'email in used',
-    pt: 'email en uso',
+    ptBR: 'email en uso',
+  },
+
+  signIn_userNotExist: {
+    ptBR: 'user not exist',
+    engUS: 'usuário não existe',
   },
 };

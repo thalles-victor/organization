@@ -22,7 +22,7 @@ export class SignUpUseCase {
     );
 
     if (userExist) {
-      throw new UnauthorizedException(ThrowErrorMessage.signUp_already_exist);
+      throw new UnauthorizedException(ThrowErrorMessage.signUp_alreadyExist);
     }
 
     const hashedPassword = await bcrypt.hash(
