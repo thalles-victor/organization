@@ -96,6 +96,7 @@ export class UserInMemoryRepository implements IUserRepositoryContract {
     }
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   async getMany(pagination: GenericPaginationDto): Promise<UserEntity[]> {
     try {
       throw new Error('method not implemented');
